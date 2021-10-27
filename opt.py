@@ -26,7 +26,7 @@ tickers = ['4190.SR', '4003.SR', '2081.SR', '1304.SR', '4180.SR', '4002.SR', '72
 # df = pd.DataFrame()
 
 data_load_state = st.text('Loading data...')
-@st.cache
+# @st.cache
 for j,i in enumerate(tickers):
   a=yf.Ticker(i).info
   df = df.append(a, ignore_index = True)
