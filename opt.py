@@ -32,12 +32,13 @@ data_load_state = st.text('Loading data...')
 def get_data():
            global df
            df = pd.DataFrame()
+           # Fetch the data
            for j,i in enumerate(tickers):
              a=yf.Ticker(i).info
              df = df.append(a, ignore_index = True)
            return df
 
-get_data()
+df = get_data()
 data_load_state.text('Loading data... done!')
 
 st.title('Stock selection App')
