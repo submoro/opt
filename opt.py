@@ -44,7 +44,7 @@ data_load_state.text('')
 
 st.title('Saudi market stocks selection App')
 
-st.markdown('### Application Brief:')
+st.markdown('### Application Brief')
 st.markdown('This application helps you to select which stock to buy from saudi marketand how much quantity from each stocks according your inputs')
 
 # df = pd.read_csv(r'C:\Users\eng_a\AIML\27102021-123216 - Tasi.csv')
@@ -147,20 +147,25 @@ pe_min = int(df['trailingPE'].min())
 pe_max = int(df['trailingPE'].max())
 po_value = st.number_input('Enter Required Portfolio Value in "SAR" - Min = 10 SAR, Max = 1,000,000 SAR:', min_value = 10, max_value = 1000000,step = 100)
 port_value = st.slider('Portfolio Value (SAR):', 1000, 1000000,po_value,step = 100)
-
+st.markdown('### Maximum Price to Earning Ratio')
 st.markdown('The price-to-earnings ratio (P/E) is one of the most widely used tools by which investors and analysts determine a stocks relative valuation.')
 st.markdown('The P/E ratio helps one determine whether a stock is overvalued or undervalued. A company P/E can also be benchmarked against other stocks in the same industry or against the broader market')
 price_to_earning = st.slider('Maximum Price To earning:', pe_min, pe_max,20)
 
+st.markdown('### Minimum Dividend yield')
 st.markdown('The dividend yield, expressed as a percentage, is a financial ratio (dividend/price) that shows how much a company pays out in dividends each year relative to its stock price.')
 min_div = st.slider('Minimum Div (%):', int(df['trailingAnnualDividendYield'].min()*100), int(df['trailingAnnualDividendYield'].max()*100),4)
 
+
+st.markdown('### Maximum Payout Ratio')
 st.markdown('The payout ratio is a financial metric showing the proportion of earnings a company pays its shareholders in the form of dividends, expressed as a percentage of the company total earnings.')
 max_pay_ratio = st.slider('Maximum Payout Ratio (%):', int(df['payoutRatio'].min()*100), int(df['payoutRatio'].max()*100),75)
 
+st.markdown('### Maximum Price to Book ratio')
 st.markdown('The price-to-book ratio compares a company market value to its book value. The market value of a company is its share price multiplied by the number of outstanding shares. The book value is the net assets of a company')
 price_to_book = st.slider('Maximum Price to Book (Multiple):', int(df['priceToBook'].min()), int(df['priceToBook'].max()),3)
 
+st.markdown('### Maximum enterprise-value-to-EBITDA ratio')
 st.markdown('The enterprise-value-to-EBITDA ratio is calculated by dividing EV by EBITDA or earnings before interest, taxes, depreciation, and amortization. Typically, EV/EBITDA values below 10 are seen as healthy')
 ev_to_ebtida = st.slider('Maximum Enterprice to EBTIDA:', int(df['enterpriseToEbitda'].min()), int(df['enterpriseToEbitda'].max()),25)
 
