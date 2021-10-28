@@ -27,7 +27,7 @@ tickers = ['4190.SR', '4003.SR', '2081.SR', '1304.SR', '4180.SR', '4002.SR', '72
 
 data_load_state = st.text('Loading data...')
 
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True, ttl = 86400)
 
 def get_data():
            global df
@@ -53,7 +53,7 @@ dx['trailingAnnualDividendYield'] = round(dx['trailingAnnualDividendYield'] * 10
 dx.sort_values('DivCom', ascending = False)
 
 #-------------------------------------------------------------------
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True, ttl = 86400)
 def data_prep(data,flag):
   cols = ['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda','fiveYearAvgDividendYield','payoutRatio']
   for col in cols:
