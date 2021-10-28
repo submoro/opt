@@ -23,13 +23,15 @@ tickers = ['4190.SR', '4003.SR', '2081.SR', '1304.SR', '4180.SR', '4002.SR', '72
            '4338.SR', '4340.SR', '8270.SR', '2360.SR', '4348.SR', '4090.SR']
 
 #scrap the data from Yahoo finance
-# df = pd.DataFrame()
+# 
 
 data_load_state = st.text('Loading data...')
 
 @st.cache(allow_output_mutation=True)
 
 def get_data():
+           global df
+           df = pd.DataFrame()
            for j,i in enumerate(tickers):
              a=yf.Ticker(i).info
              df = df.append(a, ignore_index = True)
