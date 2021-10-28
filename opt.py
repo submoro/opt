@@ -33,7 +33,7 @@ def get_data():
            for j,i in enumerate(tickers):
              a=yf.Ticker(i).info
              df = df.append(a, ignore_index = True)
-           return df
+return df
 
 get_data()
 data_load_state.text('Loading data... done!')
