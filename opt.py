@@ -27,7 +27,7 @@ tickers = ['4190.SR', '4003.SR', '2081.SR', '1304.SR', '4180.SR', '4002.SR', '72
 
 data_load_state = st.text('Loading data...')
 
-@st.cache(allow_output_mutation=True, func = get_data)
+@st.cache(allow_output_mutation=True)
 
 def get_data():
            for j,i in enumerate(tickers):
