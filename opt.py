@@ -40,10 +40,11 @@ def get_data():
 
 df = get_data()
 data_load_state.text('Loading data... done!')
+data_load_state.text('')
 
 st.title('Saudi market stocks selection App')
-astr = 'This application helps you to select which stock to buy from saudi marketand how much quantity from each stocks according your inputs'
-st.markdown(astr)
+
+st.markdown('## Application Brief: /n This application helps you to select which stock to buy from saudi marketand how much quantity from each stocks according your inputs')
 
 # df = pd.read_csv(r'C:\Users\eng_a\AIML\27102021-123216 - Tasi.csv')
 
