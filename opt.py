@@ -44,7 +44,8 @@ data_load_state.text('')
 
 st.title('Saudi market stocks selection App')
 
-st.markdown('## Application Brief: /n This application helps you to select which stock to buy from saudi marketand how much quantity from each stocks according your inputs')
+st.markdown('### Application Brief:')
+st.markdown('This application helps you to select which stock to buy from saudi marketand how much quantity from each stocks according your inputs')
 
 # df = pd.read_csv(r'C:\Users\eng_a\AIML\27102021-123216 - Tasi.csv')
 
