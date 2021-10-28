@@ -43,7 +43,7 @@ data_load_state.text('Loading data... done!')
 
 st.title('Saudi market stocks selection App')
 astr = 'This application helps you to select which stock to buy from saudi marketand how much quantity from each stocks according your inputs'
-st.text_area(label = 'App function',value = astr)
+st.markdown(astr)
 
 # df = pd.read_csv(r'C:\Users\eng_a\AIML\27102021-123216 - Tasi.csv')
 
