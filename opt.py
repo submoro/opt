@@ -167,7 +167,7 @@ price_to_book = st.slider('Maximum Price to Book (Multiple):', int(df['priceToBo
 
 st.markdown('### Maximum enterprise-value-to-EBITDA ratio')
 st.markdown('The enterprise-value-to-EBITDA ratio is calculated by dividing EV by EBITDA or earnings before interest, taxes, depreciation, and amortization. Typically, EV/EBITDA values below 10 are seen as healthy')
-ev_to_ebtida = st.slider('Maximum Enterprice to EBTIDA:', int(df['enterpriseToEbitda'].min()), int(df['enterpriseToEbitda'].max()),25)
+ev_to_ebtida = st.slider('Maximum Enterprice to EBTIDA:', int(df['enterpriseToEbitda'].min()), int(df['enterpriseToEbitda'].max()),10)
 
 opt(port_value,price_to_earning,min_div/100,max_pay_ratio/100,price_to_book,ev_to_ebtida)
 
