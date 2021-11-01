@@ -59,11 +59,11 @@ dx.sort_values('DivCom', ascending = False)
 #-------------------------------------------------------------------
 @st.cache(allow_output_mutation=True, ttl = 86400)
 def data_prep(data,flag):
-  cols = ['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda','fiveYearAvgDividendYield','payoutRatio']
+  cols = ['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda','fiveYearAvgDividendYield','payoutRatio'.'debtToEquity']
   for col in cols:
     data[col] = data[col].astype(float)
 
-  df = data.dropna(subset=['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda'])
+  df = data.dropna(subset=['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda','debtToEquity'])
   if flag:
           df = df[df['trailingAnnualDividendYield'] *100 > df['fiveYearAvgDividendYield']]
 
@@ -74,11 +74,11 @@ def data_prep(data,flag):
   df = df[df['priceToBook'] > 0]
   df = df[df['fiveYearAvgDividendYield'] > 0]
   df = df[df['payoutRatio'] > 0]
-
+  df = df[df['debtToEquity'] >= 0]
   df = df.sort_values('returnOnEquity', axis = 0, ascending = False)
   return df
 #--------------------------------------------------------------------
-def opt(portfolio_size,price_earining,min_dividend,payout_ratio,price_bookvalue,EVtoEBTIDA):
+def opt(portfolio_size,price_earining,min_dividend,payout_ratio,price_bookvalue,EVtoEBTIDA,debt_equity):
   min_portfolio_size = portfolio_size * 0.9
   #Prepare Data Dict
   stocks = list(df['shortName'])
@@ -90,6 +90,9 @@ def opt(portfolio_size,price_earining,min_dividend,payout_ratio,price_bookvalue,
   P = dict(zip(stocks, df['priceToBook']))
   DIV = dict(zip(stocks, df['trailingAnnualDividendYield']))
   payout = dict(zip(stocks,df['payoutRatio']))
+  debt = dict(zip(stocks,df['debtToEquity']))
+           
+
 
   #Define the variable
   stocks_vars = LpVariable.dicts("", stocks, lowBound=0, upBound=None, cat=const.LpInteger)
@@ -105,6 +108,8 @@ def opt(portfolio_size,price_earining,min_dividend,payout_ratio,price_bookvalue,
   total_score += lpSum([((close[i] * stocks_vars[i])*portfolio_size**-1)*P[i] for i in stocks_vars]) <= price_bookvalue
   total_score += lpSum([((close[i] * stocks_vars[i])*portfolio_size**-1)*EV[i] for i in stocks_vars]) <= EVtoEBTIDA
   total_score += lpSum([((close[i] * stocks_vars[i])*portfolio_size**-1)*payout[i] for i in stocks_vars]) <= payout_ratio
+  total_score += lpSum([((close[i] * stocks_vars[i])*portfolio_size**-1)*debt[i] for i in stocks_vars]) <= debt_equity
+
   #Solve the problem
   total_score.solve()
   #Show the variable results
@@ -168,6 +173,8 @@ price_to_book = st.slider('Maximum Price to Book (Multiple):', int(df['priceToBo
 st.markdown('### Maximum enterprise-value-to-EBITDA ratio')
 st.markdown('The enterprise-value-to-EBITDA ratio is calculated by dividing EV by EBITDA or earnings before interest, taxes, depreciation, and amortization. Typically, EV/EBITDA values below 10 are seen as healthy')
 ev_to_ebtida = st.slider('Maximum Enterprice to EBTIDA:', int(df['enterpriseToEbitda'].min()), int(df['enterpriseToEbitda'].max()),10)
+
+debt_equity = st.slider('Maximum Debt to Equity ratio :' int(df['debtToEquity'].min()), int(df['debtToEquity'].max()),0)
 
 opt(port_value,price_to_earning,min_div/100,max_pay_ratio/100,price_to_book,ev_to_ebtida)
 
