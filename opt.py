@@ -176,7 +176,7 @@ ev_to_ebtida = st.slider('Maximum Enterprice to EBTIDA:', int(df['enterpriseToEb
 
 st.markdown('### Debt-To-Equity Ratio (D/E)')
 st.markdown('The debt-to-equity (D/E) ratio compares a company’s total liabilities to its shareholder equity and can be used to evaluate how much leverage a company is using.')
-debt_equity = st.slider('Maximum Debt to Equity ratio :', int(df['debtToEquity'].min()), int(df['debtToEquity'].max()),0)
+debt_equity = st.slider('Maximum Debt to Equity ratio :', int(df['debtToEquity'].min()), int(df['debtToEquity'].max()),25)
 
 opt(port_value,price_to_earning,min_div/100,max_pay_ratio/100,price_to_book,ev_to_ebtida,debt_equity)
 
@@ -228,7 +228,7 @@ Portfolio_EVEB = round(result['Portfolio EVBV'].sum(),2)
 Portfolio_PBV = round(result['Portfolio PBV'].sum(),2)
 Portfolio_Div = round(result['Portfolio Div'].sum()*100,2)
 Portfolio_payout = round(result['Portfolio_Payout_Ratio'].sum(),2)
-Portfolio_payout = round(result['Portfolio_debtToEquity'].sum(),2)
+Portfolio_debt = round(result['Portfolio_debtToEquity'].sum(),2)
 
 result.sort_values('Cost', ascending=False,axis = 0)
 
