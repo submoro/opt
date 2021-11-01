@@ -232,8 +232,8 @@ Portfolio_debt = round(result['Portfolio_debtToEquity'].sum(),2)
 
 result.sort_values('Cost', ascending=False,axis = 0)
 
-portfolio = pd.DataFrame({'Ratio': ['Portfolio Value','Price to Earning','Enterprise value to EBTIDA', 'Price To BookValue','Div %','Payout_Ratio', 'DebtToEquity'],
-'Value' : [Portfolio_Value,Portfolio_PE,Portfolio_EVEB,Portfolio_PBV,Portfolio_Div,Portfolio_payout,Portfolio_debt]})
+portfolio = pd.DataFrame({'Ratio': ['Portfolio Value','Price to Earning (Multiple)','Enterprise value to EBTIDA (Multiple)', 'Price To BookValue (Multiple)','Div (%)','Payout_Ratio (%)', 'DebtToEquity (%)'],
+'Value' : [Portfolio_Value,Portfolio_PE,Portfolio_EVEB,Portfolio_PBV,Portfolio_Div,Portfolio_payout * 100 ,Portfolio_debt]})
 
 st.subheader('Portfolio Figures')
 st.markdown('Below is your portfolio performance if you purchase these stocks with the mentioned prices and quantities')
