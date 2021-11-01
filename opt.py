@@ -151,7 +151,7 @@ df = data_prep(df,flag)
 pe_min = int(df['trailingPE'].min())
 pe_max = int(df['trailingPE'].max())
 
-port_value = st.slider('Portfolio Value (SAR):', 1000, 100000,po_value,step = 100)
+port_value = st.slider('Portfolio Value (SAR):', 1000, 100000,10000,step = 100)
 st.markdown('### Maximum Price to Earning Ratio')
 st.markdown('The price-to-earnings ratio (P/E) is one of the most widely used tools by which investors and analysts determine a stocks relative valuation.')
 st.markdown('The P/E ratio helps one determine whether a stock is overvalued or undervalued. A company P/E can also be benchmarked against other stocks in the same industry or against the broader market')
