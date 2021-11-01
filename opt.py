@@ -174,9 +174,11 @@ st.markdown('### Maximum enterprise-value-to-EBITDA ratio')
 st.markdown('The enterprise-value-to-EBITDA ratio is calculated by dividing EV by EBITDA or earnings before interest, taxes, depreciation, and amortization. Typically, EV/EBITDA values below 10 are seen as healthy')
 ev_to_ebtida = st.slider('Maximum Enterprice to EBTIDA:', int(df['enterpriseToEbitda'].min()), int(df['enterpriseToEbitda'].max()),10)
 
+st.markdown('### Debt-To-Equity Ratio (D/E)')
+st.markdown('The debt-to-equity (D/E) ratio compares a company’s total liabilities to its shareholder equity and can be used to evaluate how much leverage a company is using.')
 debt_equity = st.slider('Maximum Debt to Equity ratio :', int(df['debtToEquity'].min()), int(df['debtToEquity'].max()),0)
 
-opt(port_value,price_to_earning,min_div/100,max_pay_ratio/100,price_to_book,ev_to_ebtida)
+opt(port_value,price_to_earning,min_div/100,max_pay_ratio/100,price_to_book,ev_to_ebtida,debt_equity)
 
 Name = results['Name'].tolist().copy()
 Divd = []
