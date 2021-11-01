@@ -129,7 +129,7 @@ def opt(portfolio_size,price_earining,min_dividend,payout_ratio,price_bookvalue,
   for r in Company_Name:
     Company.append(r.replace('_',' ').strip())
 
-  cons = ['Portfolio_Size','portfolio_size','Dividend ratio','PriceToEarning','PriceToBook','EVtoEBTIDA','Payout_ratio']
+  cons = ['Portfolio_Size','portfolio_size','Dividend ratio','PriceToEarning','PriceToBook','EVtoEBTIDA','Payout_ratio','debtToEquity']
   # getting the value of the constraint  
   print('--------------------- Constraint Values -------------------')
   for con, constraint in zip(cons,total_score.constraints):
@@ -200,7 +200,7 @@ for n in results['Name']:
       payout.append(df['payoutRatio'].iloc[j])
 
 cost = [a*b for a,b in zip(price,qty)]     
-result = pd.DataFrame({'Name': Name,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost})
+result = pd.DataFrame({'Name': Name,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost, 'debtToEquity': debtToEquity})
 
 st.subheader('Result')
 
@@ -217,6 +217,7 @@ result['Portfolio EVBV'] = result['Weight'] * result['EV/EB']
 result['Portfolio PBV'] = result['Weight'] * result['PBV']
 result['Portfolio Div'] = result['Weight'] * result['Div']
 result['Portfolio_Payout_Ratio'] = result['Weight'] * result['Payout_ratio']
+result['Portfolio_debtToEquity'] = result['Weight'] * result['debtToEquity']
 
 #Portfolio indicators
 Portfolio_Value = round(result['Cost'].sum(),2)
@@ -225,6 +226,7 @@ Portfolio_EVEB = round(result['Portfolio EVBV'].sum(),2)
 Portfolio_PBV = round(result['Portfolio PBV'].sum(),2)
 Portfolio_Div = round(result['Portfolio Div'].sum()*100,2)
 Portfolio_payout = round(result['Portfolio_Payout_Ratio'].sum(),2)
+Portfolio_payout = round(result['Portfolio_debtToEquity'].sum(),2)
 
 result.sort_values('Cost', ascending=False,axis = 0)
 
