@@ -202,7 +202,7 @@ for n in results['Name']:
       debttoequity.append(df['debtToEquity'].iloc[j])
 
 cost = [a*b for a,b in zip(price,qty)]     
-result = pd.DataFrame({'Name': Name,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost, 'debtToEquity': debtToEquity})
+result = pd.DataFrame({'Name': Name,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost, 'debtToEquity': debttoequity})
 
 st.subheader('Result')
 
