@@ -199,7 +199,7 @@ for n in results['Name']:
       eveb.append(df['enterpriseToEbitda'].iloc[j])
       pbv.append(df['priceToBook'].iloc[j])
       payout.append(df['payoutRatio'].iloc[j])
-      debttoequity.append(df['debt_equity'].iloc[j])
+      debttoequity.append(df['debtToEquity'].iloc[j])
 
 cost = [a*b for a,b in zip(price,qty)]     
 result = pd.DataFrame({'Name': Name,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost, 'debtToEquity': debtToEquity})
