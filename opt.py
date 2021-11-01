@@ -59,7 +59,7 @@ dx.sort_values('DivCom', ascending = False)
 #-------------------------------------------------------------------
 @st.cache(allow_output_mutation=True, ttl = 86400)
 def data_prep(data,flag):
-  cols = ['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda','fiveYearAvgDividendYield','payoutRatio'.'debtToEquity']
+  cols = ['trailingAnnualDividendYield','trailingPE','returnOnEquity','priceToBook','enterpriseToEbitda','fiveYearAvgDividendYield','payoutRatio','debtToEquity']
   for col in cols:
     data[col] = data[col].astype(float)
 
