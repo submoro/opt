@@ -150,7 +150,7 @@ df = data_prep(df,flag)
 
 pe_min = int(df['trailingPE'].min())
 pe_max = int(df['trailingPE'].max())
-po_value = st.number_input('Enter Required Portfolio Value in "SAR" - Min = 1000 SAR, Max = 100,000 SAR:', min_value = 1000, max_value = 100000,step = 100)
+
 port_value = st.slider('Portfolio Value (SAR):', 1000, 100000,po_value,step = 100)
 st.markdown('### Maximum Price to Earning Ratio')
 st.markdown('The price-to-earnings ratio (P/E) is one of the most widely used tools by which investors and analysts determine a stocks relative valuation.')
