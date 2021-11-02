@@ -52,7 +52,7 @@ st.markdown('This application helps you to select which stock to buy from saudi 
 df['DivCom'] = (df['trailingAnnualDividendYield'] *100) /df['fiveYearAvgDividendYield']
 
 dx = df[df['DivCom'] > 1]
-dx = dx[['shortName','DivCom','trailingAnnualDividendYield','fiveYearAvgDividendYield']]
+dx = dx[['shortName','symbol','currentPrice','DivCom','trailingAnnualDividendYield','fiveYearAvgDividendYield']]
 dx['trailingAnnualDividendYield'] = round(dx['trailingAnnualDividendYield'] * 100,2)
 dx.sort_values('DivCom', ascending = False)
 
@@ -189,6 +189,7 @@ eveb = []
 pbv = []
 payout = []
 debttoequity = []
+tic = []
 
 for n in results['Name']:
   for j,i in enumerate(df['shortName']):
@@ -200,14 +201,15 @@ for n in results['Name']:
       pbv.append(df['priceToBook'].iloc[j])
       payout.append(df['payoutRatio'].iloc[j])
       debttoequity.append(df['debtToEquity'].iloc[j])
+      tic.append(df['symbol'].iloc[j])
 
 cost = [a*b for a,b in zip(price,qty)]     
-result = pd.DataFrame({'Name': Name,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost, 'debtToEquity': debttoequity})
+result = pd.DataFrame({'Name': Name,'Ticker': tic,'Price':price ,'Quantities': qty, 'Div':Divd, 'PE':Pe, 'EV/EB':eveb,'PBV':pbv,'Payout_ratio':payout,'Cost': cost, 'debtToEquity': debttoequity})
 
 st.subheader('Result')
 
 st.markdown('Find below the company name, purchase price, Quantity of each stock to purchase and few other parameters for your information about each stock')
-st.write(result.tail())
+st.write(result.head(len(result)))
 
 
 
